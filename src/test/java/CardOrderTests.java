@@ -1,8 +1,6 @@
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -60,5 +58,4 @@ public class CardOrderTests {
         $("button").click();
         $(".input_invalid").shouldHave(Condition.text("Поле обязательно для заполнения"));
     }
-
 }
