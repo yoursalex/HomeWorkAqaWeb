@@ -8,7 +8,7 @@ public class CardOrderTests {
 
     @Test
     @DisplayName("Должен успешно отправлять заявку при валидных данных")
-    void ShouldSubmitRequest() {
+    void shouldSubmitRequest() {
         open("http://localhost:9999/");
         $("[data-test-id=name] input.input__control").setValue("Иванов Иван");
         $("[data-test-id=phone] input.input__control").setValue("+79991112233");
@@ -19,7 +19,7 @@ public class CardOrderTests {
 
     @Test
     @DisplayName("Должен указывать на ошибку при вводе невалидных фамилии и имени")
-    void ShouldNotSubmitWithWrongName() {
+    void shouldNotSubmitWithWrongName() {
         open("http://localhost:9999/");
         $("[data-test-id=name] input.input__control").setValue("Ivanov Ivan");
         $("[data-test-id=phone] input.input__control").setValue("+79991112233");
@@ -30,7 +30,7 @@ public class CardOrderTests {
 
     @Test
     @DisplayName("Должен указывать на ошибку при вводе невалидного номера телефона")
-    void ShouldNotSubmitWithWrongPhone() {
+    void shouldNotSubmitWithWrongPhone() {
         open("http://localhost:9999/");
         $("[data-test-id=name] input.input__control").setValue("Иванов Иван");
         $("[data-test-id=phone] input.input__control").setValue("+799911122");
@@ -41,7 +41,7 @@ public class CardOrderTests {
 
     @Test
     @DisplayName("Должен указывать на ошибку при пустом поле имени")
-    void ShouldNotSubmitWithEmptyName() {
+    void shouldNotSubmitWithEmptyName() {
         open("http://localhost:9999/");
         $("[data-test-id=phone] input.input__control").setValue("+79991112233");
         $("[data-test-id=agreement]").click();
@@ -51,11 +51,21 @@ public class CardOrderTests {
 
     @Test
     @DisplayName("Должен указывать на ошибку при пустом поле номера телефона")
-    void ShouldNotSubmitWithEmptyPhone() {
+    void shouldNotSubmitWithEmptyPhone() {
         open("http://localhost:9999/");
         $("[data-test-id=name] input.input__control").setValue("Иванов Иван");
         $("[data-test-id=agreement]").click();
         $("button").click();
         $(".input_invalid").shouldHave(Condition.text("Поле обязательно для заполнения"));
+    }
+
+    @Test
+    @DisplayName("Должен указывать на ошибку при пустом чекбоксе")
+    void shouldNotSubmitWithEmptyCheckbox() {
+        open("http://localhost:9999/");
+        $("[data-test-id=name] input.input__control").setValue("Иванов Иван");
+        $("[data-test-id=phone] input.input__control").setValue("+79991112233");
+        $("button").click();
+        $("form").$("label").shouldHave(Condition.cssClass("input_invalid"));
     }
 }
