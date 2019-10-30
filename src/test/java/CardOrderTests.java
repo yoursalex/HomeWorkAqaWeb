@@ -8,7 +8,7 @@ public class CardOrderTests {
 
     @Test
     @DisplayName("Должен успешно отправлять заявку при валидных данных")
-    void shouldSubmitRequest() {
+    void ShouldSubmitRequest() {
         open("http://localhost:9999/");
         $("[data-test-id=name] input.input__control").setValue("Иванов Иван");
         $("[data-test-id=phone] input.input__control").setValue("+79991112233");
@@ -19,7 +19,7 @@ public class CardOrderTests {
 
     @Test
     @DisplayName("Должен указывать на ошибку при вводе невалидных фамилии и имени")
-    void shouldNotSubmitWithWrongName() {
+    void ShouldNotSubmitWithWrongName() {
         open("http://localhost:9999/");
         $("[data-test-id=name] input.input__control").setValue("Ivanov Ivan");
         $("[data-test-id=phone] input.input__control").setValue("+79991112233");
@@ -30,7 +30,7 @@ public class CardOrderTests {
 
     @Test
     @DisplayName("Должен указывать на ошибку при вводе невалидного номера телефона")
-    void shouldNotSubmitWithWrongPhone() {
+    void ShouldNotSubmitWithWrongPhone() {
         open("http://localhost:9999/");
         $("[data-test-id=name] input.input__control").setValue("Иванов Иван");
         $("[data-test-id=phone] input.input__control").setValue("+799911122");
@@ -41,7 +41,7 @@ public class CardOrderTests {
 
     @Test
     @DisplayName("Должен указывать на ошибку при пустом поле имени")
-    void shouldNotSubmitWithEmptyName() {
+    void ShouldNotSubmitWithEmptyName() {
         open("http://localhost:9999/");
         $("[data-test-id=phone] input.input__control").setValue("+79991112233");
         $("[data-test-id=agreement]").click();
@@ -51,7 +51,7 @@ public class CardOrderTests {
 
     @Test
     @DisplayName("Должен указывать на ошибку при пустом поле номера телефона")
-    void shouldNotSubmitWithEmptyPhone() {
+    void ShouldNotSubmitWithEmptyPhone() {
         open("http://localhost:9999/");
         $("[data-test-id=name] input.input__control").setValue("Иванов Иван");
         $("[data-test-id=agreement]").click();
